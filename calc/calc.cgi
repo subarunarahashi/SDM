@@ -4,10 +4,13 @@
  
  def html_header
    return <<-EOF_HEADER
- Content-Type: text/html
- 
+Content-type: text/html
+
+
    <html>
-   <title>simple calculator</title>
+   <head>
+    <title>simple calculator</title>
+   </head>
    <body>
     input:
  EOF_HEADER
@@ -41,6 +44,10 @@
  if exp =~ /^$/
    # initial state
    msg = ''
+   content << msg << html_form
+
+ elsif exp.include?("/0")
+   msg = 'Error: division by zero'
    content << msg << html_form
  
  elsif exp =~ /\A[\d\/*+-]+\z/
