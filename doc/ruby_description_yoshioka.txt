@@ -1,0 +1,46 @@
+Rubyは簡単な構文や豊富な機能を持っている．以下に、Rubyの基本操作について示す．
+
+１．変数の定義
+変数を定義するには、変数名に値を代入します。例えば、以下のように定義します。
+
+name = "John"
+age = 25
+
+putsメソッドを使用して、コンソールに文字列を出力することができます。
+
+puts "Hello, world!"
+
+２．条件分岐
+条件分岐を行うためには、if文を使用します。例えば、以下のように書きます。
+
+if age >= 18
+  puts "You are an adult."
+else
+  puts "You are a minor."
+end
+
+３．ループ
+繰り返し処理を行うためには、while文やfor文を使用します。例えば、以下のように書きます。
+
+i = 0
+while i < 10
+  puts i
+  i += 1
+end
+
+for i in 0..9
+  puts i
+end
+
+４．配列
+複数の値を格納するために、配列を使用します。以下のように書きます。
+c
+Copy code
+fruits = ["apple", "banana", "orange"]
+puts fruits[0] # "apple"が出力される
+
+５．ハッシュ
+キーと値をペアで格納するために、ハッシュを使用します。以下のように書きます。
+
+person = {"name" => "John", "age" => 25}
+puts person["name"] # "John"が出力される
