@@ -21,7 +21,7 @@ end
 
 def html_footer
   return <<-EOF_FOOTER
-    <br> output:
+    <br> output:<br>
 EOF_FOOTER
 end
  
@@ -32,6 +32,7 @@ def html_form
   </form>
 EOF_FORM
 end
+
 
 ################################################################
 ### main
@@ -48,12 +49,23 @@ if exp =~ /^$/
   # initial state
   msg = ''
 
+elsif exp =~ /\A[\/%*+-]{2,}/
+  msg = 'Error: input no numbers'
+
 elsif exp.include?("/0")
   msg = 'Error: division by zero'
 
-elsif exp =~ /\A[\d\/%*+-]+\z/
+elsif exp =~ /\A[\d\/%*+-]+\z/      #/\A[\d\/*+-]+\z/
+  if exp =~ /\A[\d\/%*+-]*\d+[\/%*+-]{2,}+\d*\z/  # +*などの演算子が二回続くとエラーメッセージを出力
+     if exp =~ /\A[\d\/%*+-]*\d+[*]{2}+\d+\z/   # a ** b : aのn乗
+        msg = eval exp
+     else
+        msg = 'invalid expression.'
+     end
   # got user input
-  msg = eval exp
+  else 
+     msg = eval exp
+  end
    
 else
   # invalid input
