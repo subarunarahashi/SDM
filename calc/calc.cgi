@@ -51,8 +51,8 @@ if exp =~ /^$/
 elsif exp.include?('/0')
   msg = 'Error: division by zero'
  
-elsif exp =~ /\A[\d\/*+-%]+\z/      #/\A[\d\/*+-]+\z/
-  if exp =~ /\A[\d\/*+-]*\d+[\/*+-%]{2,}+\d*\z/  # +*などの演算子が二回続くとエラーメッセージを出力
+elsif exp =~ /\A[\d\/*+-]+\z/      #/\A[\d\/*+-]+\z/
+  if exp =~ /\A[\d\/*+-]*\d+[\/*+-]{2,}+\d*\z/  # +*などの演算子が二回続くとエラーメッセージを出力
     if exp =~ /\A[\d\/*+-]*\d+[*]{2}+\d+\z/   # a ** b : aのn乗
       msg = eval exp
     else
