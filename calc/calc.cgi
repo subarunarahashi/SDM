@@ -1,5 +1,5 @@
 #!/usr/bin/ruby
-  
+
 require 'cgi'
 
 def html_header
@@ -29,48 +29,53 @@ def html_form
   return <<-EOF_FORM
   <form action="calc.cgi" method="post">
     <input name="exp" size="25" />
+        <input type="reset" value="RESET" />
   </form>
 EOF_FORM
 end
- 
- ################################################################
- ### main
- 
+
+
+################################################################
+### main
+
 content = []
- 
+
 params = CGI.new
 exp = params['exp'].to_s
- 
+
 content << html_header
 content << html_form
- 
+
 if exp =~ /^$/
   # initial state
   msg = ''
 
-elsif exp.include?('/0')
+elsif exp =~ /\A[\/%*+-]{1,}/
+  msg = 'Error: input no numbers'
+
+elsif exp.include?("/0")
   msg = 'Error: division by zero'
- 
-elsif exp =~ /\A[\d\/*+-]+\z/      #/\A[\d\/*+-]+\z/
-  if exp =~ /\A[\d\/*+-]*\d+[\/*+-]{2,}+\d*\z/  # +*などの演算子が二回続くとエラーメッセージを出力
-    if exp =~ /\A[\d\/*+-]*\d+[*]{2}+\d+\z/   # a ** b : aのn乗
-      msg = eval exp
-    else
-      content ='invalid expression.'
-    end
-  else
-    msg = eval exp
+
+elsif exp =~ /\A[\d\/%*+-]+\z/      #/\A[\d\/*+-]+\z/
+  if exp =~ /\A[\d\/%*+-]*\d+[\/%*+-]{2,}+\d*\z/  # +*などの演算子が二回続くとエラーメッセージを出力
+     if exp =~ /\A[\d\/%*+-]*\d+[*]{2}+\d+\z/   # a ** b : aのn乗
+        msg = eval exp
+     else
+        msg = 'invalid expression.'
+     end
+  # got user input
+  else 
+     msg = eval exp
   end
-
-
+   
 else
   # invalid input
   msg = 'invalid expression.'
 end
- 
+
 content << html_lastinput
 content << exp
 content << html_footer
 content << msg
- 
+
 print content.join
