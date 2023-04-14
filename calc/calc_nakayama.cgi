@@ -1,4 +1,4 @@
-#!/Ruby32-x64/bin/ruby
+#!/usr/bin/ruby
 
 require 'cgi'
 
@@ -49,7 +49,7 @@ if exp =~ /^$/
   # initial state
   msg = ''
 
-elsif exp =~ /\A[\/%*+-]{2,}/
+elsif exp =~ /\A[\/%*+-]{1,}/
   msg = 'Error: input no numbers'
 
 elsif exp.include?("/0")
