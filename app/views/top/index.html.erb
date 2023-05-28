@@ -1,0 +1,15 @@
+<% if Rails.env.production? %>
+  <% authenticate_or_request_with_http_basic do |username, password| %>
+    <% if username == ENV['BASIC_AUTH_USERNAME'] && password == ENV['BASIC_AUTH_PASSWORD'] %>
+      <!-- 認証成功時の表示内容 -->
+    <% else %>
+      <% response.headers['WWW-Authenticate'] = 'Basic realm="Restricted Area"' %>
+      <% render plain: '認証に失敗しました。', status: 401 %>
+    <% end %>
+  <% end %>
+<% end %>
+<h1>TA時間管理システム</h1>
+
+<p><%= link_to '科目一覧画面', '/courses/index' %></p>
+<p><%= link_to '帳票表示画面', '/show_reports/index' %></p>
+<p><%= link_to 'TA候補者一覧画面', '/teaching_assistants/index' %></p>
