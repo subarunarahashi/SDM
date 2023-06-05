@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :work_tests
   get 'assign_shift/index'
   get 'show_reports/index'
   get 'teaching_assistants/index'
