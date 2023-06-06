@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'courses/index'
   get 'top/index'
   root "top#index"
+
+  post '/check_data', to: "show_reports#check_data"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
   # root "articles#index"
