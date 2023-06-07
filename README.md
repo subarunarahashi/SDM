@@ -1,4 +1,6 @@
-# README
+# データベース構築の手順
+rake import .all を入力する
+（特定のデータを入れたい場合は，.allではなく，..courseなどと入力する．）
 
 This README would normally document whatever steps are necessary to get the
 application up and running.

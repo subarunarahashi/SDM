@@ -4,7 +4,7 @@ require 'csv'
 namespace :import do
   #このdescはdescribeのdesc
   desc "Import data from csv"
-  task :all => [:csv1, :csv2]
+  task :all => [:course, :teaching_assistant]
 
   task course: :environment do
     path = File.join Rails.root, "db/courses.csv"
