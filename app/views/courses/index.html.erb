@@ -18,8 +18,8 @@
         <tr>
             <td><%= course.year%></td>
             <td><%= course.term%></td>
-            <td><%= link_to course.number,'/assign_shift/index'%></td>
-            <td><%= link_to course.name,'/assign_shift/index'%></td>
+            <td><%= link_to course.number,assign_shift_index_path(course_id: course.id)%></td>
+            <td><%= link_to course.name,assign_shift_index_path(course_id: course.id)%></td>
             <td><%= course.instructor%></td>
             <td><%= course.time_budget%></td>
             <td><%= course.description%></td>
